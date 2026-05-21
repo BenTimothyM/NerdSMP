@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Info meta tags, important for social media + SEO -->
+	<title>NerdSMP - Official Website</title>
+	<meta name="description" content="NerdSMP adalah server Minecraft yang berbeda pada umumnya, Server Premium yang dapat kalian nikmati secara GRATIS. Segera Join!!'.">
+	<meta property="og:title" content="NerdSMP - Official Website Portal">
+	<meta property="og:site_name" content="NerdSMP">
+	<meta property="og:description" content="NerdSMP adalah server Minecraft yang berbeda pada umumnya, Server Premium yang dapat kalian nikmati secara GRATIS. Segera Join!!'.">
+	<meta property="og:image" content="img/minecraft.jpg">
+	<meta property="og:url" content="https://bybilly.uk/">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/stylesheet.css">
+<style>
+		/* --- Tampilan Pop-up (Modal) --- */
+		.modal-overlay {
+		    display: none; 
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100vw;
+		    height: 100vh;
+		    background-color: rgba(0, 0, 0, 0.4); /* Gelap transparan untuk latar belakang utama */
+		    backdrop-filter: blur(4px); 
+		    -webkit-backdrop-filter: blur(4px);
+		    z-index: 9999;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.modal-overlay.tampil {
+		    display: flex !important;
+		}
+
+		/* KOTAK POP-UP TRANSPARAN BURAM */
+		.modal-box {
+		    background-color: rgba(30, 35, 45, 0.55); /* Abu-abu gelap transparan (0.55 = 55% kepekatan) */
+		    backdrop-filter: blur(15px); /* Efek buram/blur di dalam kotak pop-up */
+		    -webkit-backdrop-filter: blur(15px);
+		    border: 1px solid rgba(255, 255, 255, 0.12); /* Garis tepi tipis putih transparan agar kotak terlihat tegas */
+		    
+		    padding: 30px;
+		    border-radius: 16px; 
+		    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* Bayangan pop-up lebih lembut dan dalam */
+		    width: 90%;
+		    max-width: 400px;
+		    position: relative;
+		    color: white;
+		    font-family: "Open Sans", Helvetica, sans-serif;
+		}
+
+		.modal-close {
+		    position: absolute;
+		    top: 15px;
+		    right: 20px;
+		    font-size: 24px;
+		    font-weight: bold;
+		    color: #cfcfcf;
+		    cursor: pointer;
+		    transition: 0.2s;
+		}
+
+		.modal-close:hover {
+		    color: white;
+		}
+
+		.modal-logo {
+    max-width: 80%; /* Mengatur lebar maksimal agar tidak keluar kotak */
+    height: auto; /* Proporsi gambar tetap terjaga */
+    display: block;
+    margin: 0 auto 25px auto; /* Rata tengah dan memberi jarak bawah */
+}
+
+		.copy-section {
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    background-color: rgba(0, 0, 0, 0.4); /* Background teks IP/Port dibuat agak gelap transparan */
+		    padding: 12px 16px;
+		    border-radius: 10px;
+		    margin-bottom: 15px;
+		    border: 1px solid rgba(255, 255, 255, 0.05);
+		}
+
+		.copy-label {
+		    font-size: 12px;
+		    color: #cfcfcf;
+		    margin-bottom: 4px;
+		}
+
+		.copy-text {
+		    font-weight: bold;
+		    font-size: 16px;
+		    margin: 0;
+		}
+
+		.btn-copy {
+		    background-color: #d55555; 
+		    color: white;
+		    border: none;
+		    padding: 8px 16px;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    font-weight: bold;
+		    transition: 0.2s;
+		}
+
+		.btn-copy:hover {
+		    background-color: #ff9473;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="logo">
+			<!-- In the img folder, upload your logo -->
+			<!-- Make sure you name it 'logo.png' or update the code below -->
+			<img src="img/logo.png" alt="MyServer logo">
+		</div>
+
+		<div class="items">
+			<!-- Replace # with your forum URL-->
+			<a href="https://discord.gg/cz23XrcUFs" class="item forums">
+			<div>
+				<img src="img/forums.png" alt="Minecraft forums icon" class="img">
+				<p class="subtitle">Join our</p>
+				<p class="title">Discord</p>
+			</div>
+			</a>
+
+			<!-- Replace # with your store URL -->
+			<a href="#" class="item store" id="btnJoinPopUp">
+    <div>
+        <img src="img/store.png" alt="Minecraft store icon" class="img">
+        <p class="subtitle"> </p>
+        <p class="title"> </p>
+    </div>
+</a>
+
+			<!-- Replace # with your vote URL -->
+			<a href="download/" class="item vote">
+			<div>
+				<img src="img/vote.png" alt="Minecraft voting icon" class="img">
+				<p class="subtitle">1.21.132</p>
+				<p class="title">Download</p>
+			</div>
+			</a>
+
+		</div>
+	</div>
+
+<div id="modalServer" class="modal-overlay">
+    <div class="modal-box">
+        <span class="modal-close">&times;</span>
+		<img src="img/logo.png" alt="Logo NerdSMP Graduation Edition" class="modal-logo">
+        <div class="copy-section">
+            <div>
+                <p class="copy-label">SERVER IP:</p>
+                <p class="copy-text" id="textIp">basic-3.kazuostore.id</p>
+            </div>
+            <button class="btn-copy" data-target="textIp">Copy</button>
+        </div>
+
+        <div class="copy-section">
+            <div>
+                <p class="copy-label">PORT:</p>
+                <p class="copy-text" id="textPort">19163</p>
+            </div>
+            <button class="btn-copy" data-target="textPort">Copy</button>
+        </div>
+    </div>
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="js/firefly.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			// 1. Munculkan pop-up saat tombol ditekan
+			$("#btnJoinPopUp").on("click", function(e) {
+				e.preventDefault(); // Mencegah layar lompat ke atas
+				$("#modalServer").addClass("tampil");
+			});
+
+			// 2. Tutup pop-up saat tombol 'X' ditekan
+			$(".modal-close").on("click", function() {
+				$("#modalServer").removeClass("tampil");
+			});
+
+			// 3. Tutup pop-up saat klik di luar kotak
+			$(window).on("click", function(e) {
+				if ($(e.target).is("#modalServer")) {
+					$("#modalServer").removeClass("tampil");
+				}
+			});
+
+			// 4. Fitur Salin Teks (Copy to Clipboard)
+			$(".btn-copy").on("click", function() {
+				let targetId = $(this).attr("data-target"); // Ambil ID teks yang mau disalin
+				let textToCopy = $("#" + targetId).text();  // Ambil teksnya
+				
+				let $button = $(this);
+
+				// Gunakan API bawaan browser untuk menyalin
+				navigator.clipboard.writeText(textToCopy).then(function() {
+					// Ubah teks tombol sementara agar user tahu berhasil
+					let originalText = $button.text();
+					$button.text("Copied!");
+					$button.css("background-color", "#28a745"); // Warna hijau
+					
+					setTimeout(function() {
+						$button.text(originalText);
+						$button.css("background-color", ""); // Kembalikan ke warna asli
+					}, 1500); // Kembali seperti semula setelah 1.5 detik
+				}).catch(function(err) {
+					console.error('Gagal menyalin: ', err);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
