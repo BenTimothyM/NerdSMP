@@ -1,6 +1,3 @@
-<!-- Proudly coded by Billy (https://bybilly.uk) -->
-<!-- Version: 1.9.2 -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +17,160 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/stylesheet.css">
+	<style>
+				/* --- Tampilan Pop-up (Modal) --- */
+		.modal-overlay {
+		    display: none; 
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100vw;
+		    height: 100vh;
+		    background-color: rgba(0, 0, 0, 0.4); /* Gelap transparan untuk latar belakang utama */
+		    backdrop-filter: blur(4px); 
+		    -webkit-backdrop-filter: blur(4px);
+		    z-index: 9999;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		.modal-overlay.tampil {
+		    display: flex !important;
+		}
+
+		/* KOTAK POP-UP TRANSPARAN BURAM */
+		.modal-box {
+		    background-color: rgba(30, 35, 45, 0.55); /* Abu-abu gelap transparan (0.55 = 55% kepekatan) */
+		    backdrop-filter: blur(15px); /* Efek buram/blur di dalam kotak pop-up */
+		    -webkit-backdrop-filter: blur(15px);
+		    border: 1px solid rgba(255, 255, 255, 0.12); /* Garis tepi tipis putih transparan agar kotak terlihat tegas */
+		    
+		    padding: 30px;
+		    border-radius: 16px; 
+		    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* Bayangan pop-up lebih lembut dan dalam */
+		    width: 90%;
+		    max-width: 400px;
+		    position: relative;
+		    color: white;
+		    font-family: "Open Sans", Helvetica, sans-serif;
+		}
+
+		.modal-close {
+		    position: absolute;
+		    top: 15px;
+		    right: 20px;
+		    font-size: 24px;
+		    font-weight: bold;
+		    color: #cfcfcf;
+		    cursor: pointer;
+		    transition: 0.2s;
+		}
+
+		.modal-close:hover {
+		    color: white;
+		}
+
+		.modal-logo {
+	  		max-width: 80%; /* Mengatur lebar maksimal agar tidak keluar kotak */
+ 			height: auto; /* Proporsi gambar tetap terjaga */
+    		display: block;
+    		margin: 0 auto 25px auto; /* Rata tengah dan memberi jarak bawah */
+		}
+
+		.copy-section {
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    background-color: rgba(0, 0, 0, 0.4); /* Background teks IP/Port dibuat agak gelap transparan */
+		    padding: 12px 16px;
+		    border-radius: 10px;
+		    margin-bottom: 15px;
+		    border: 1px solid rgba(255, 255, 255, 0.05);
+		}
+
+		.copy-label {
+		    font-size: 12px;
+		    color: #cfcfcf;
+		    margin-bottom: 4px;
+		}
+
+		.copy-text {
+		    font-weight: bold;
+		    font-size: 16px;
+		    margin: 0;
+		}
+
+		.btn-copy {
+		    background-color: #d55555; 
+		    color: white;
+		    border: none;
+		    padding: 8px 16px;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    font-weight: bold;
+		    transition: 0.2s;
+		}
+
+		.btn-copy:hover {
+		    background-color: #ff9473;
+		}
+
+		/* --- Desain Tambahan Pop-up Download --- */
+		.download-title {
+		    text-align: center;
+		    margin-top: 0;
+		    margin-bottom: 20px;
+		    font-size: 18px;
+		    color: #cfcfcf;
+		}
+
+		.download-options {
+		    display: block;
+		}
+
+		/* Gaya Umum Tombol Download */
+		.btn-dl {
+		    display: block;
+		    text-align: center;
+		    padding: 14px;
+		    margin-bottom: 12px;
+		    border-radius: 10px;
+		    font-weight: bold;
+		    font-size: 16px;
+		    color: white;
+		    text-decoration: none;
+		    transition: 0.2s ease-in-out;
+		    border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.btn-dl:last-child {
+		    margin-bottom: 0; /* Menghilangkan jarak bawah di tombol terakhir */
+		}
+
+		/* Tombol Mediafire (Nuansa Biru Transparan) */
+		.btn-dl.mediafire {
+		    background-color: rgba(0, 112, 243, 0.45);
+		}
+		.btn-dl.mediafire:hover {
+		    background-color: rgba(0, 112, 243, 0.7);
+		    transform: translateY(-2px);
+		    box-shadow: 0 5px 15px rgba(0, 112, 243, 0.3);
+		}
+
+		/* Tombol Google Drive (Nuansa Hijau Transparan) */
+		.btn-dl.gdrive {
+		    background-color: rgba(15, 157, 88, 0.45);
+		}
+		.btn-dl.gdrive:hover {
+		    background-color: rgba(15, 157, 88, 0.7);
+		    transform: translateY(-2px);
+		    box-shadow: 0 5px 15px rgba(15, 157, 88, 0.3);
+		}
+
+		.btn-dl:active {
+		    transform: translateY(0);
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -28,26 +179,104 @@
 			<!-- Make sure you name it 'logo.png' or update the code below -->
 			<img src="img/logo.png" alt="MyServer logo">
 		</div>
-
 		<div class="items">
-			<a href="https://drive.google.com/file/d/1mqMhV7DxPxkMXOKeQy4Uyy_vHzXkP6Bd/view?usp=sharing" class="item vote">
-			<div>
-				<img src="img/vote.png" alt="Minecraft voting icon" class="img">
-				<p class="subtitle">64-Bit</p>
-				<p class="title">Download</p>
-			</div>
+			<a href="#" class="item vote" id="btnDownloadPopUp">
+				<div>
+					<img src="img/vote.png" alt="Minecraft voting icon" class="img">
+					<p class="title">64-Bit</p>
+				</div>
 			</a>
-			<a href="https://drive.google.com/file/d/1wq-IHh7WLsFbgfZVi-AsAem7wGl1Qvx8/view?usp=sharing" class="item vote">
-			<div>
-				<img src="img/vote.png" alt="Minecraft voting icon" class="img">
-				<p class="subtitle">32-Bit</p>
-				<p class="title">Download</p>
-			</div>
+			<a href="#" class="item vote" id="btnDownloadPopUp32">
+				<div>
+					<img src="img/vote.png" alt="Minecraft voting icon" class="img">
+					<p class="title">32-Bit</p>
+				</div>
 			</a>
 		</div>
+	</div>
+	<div id="modalDownload" class="modal-overlay">
+    <div class="modal-box">
+        <span class="modal-close">&times;</span>
+        <img src="img/logo.png" alt="Logo NerdSMP Graduation Edition" class="modal-logo">
+        <div class="download-options">
+            <a href="https://www.mediafire.com/file/2wu8wn776l623ll/Mc_patch_1.21.132_Arm64.apk/file" target="_blank" class="btn-dl mediafire">
+                MediaFire
+            </a>
+            <a href="https://drive.google.com/file/d/1mqMhV7DxPxkMXOKeQy4Uyy_vHzXkP6Bd/view?usp=sharing" target="_blank" class="btn-dl gdrive">
+                Google Drive
+            </a>
+        </div>
+    </div>
+	</div>
+	<div id="modalDownload32" class="modal-overlay">
+    <div class="modal-box">
+        <span class="modal-close">&times;</span>
+        <img src="img/logo.png" alt="Logo NerdSMP Graduation Edition" class="modal-logo">
+        <div class="download-options">
+            <a href="https://www.mediafire.com/file/91gsndc3yxmzia4/Mc_patch_1.21.132_Arm32.apk/file" target="_blank" class="btn-dl mediafire">
+                MediaFire
+            </a>
+            <a href="https://drive.google.com/file/d/1wq-IHh7WLsFbgfZVi-AsAem7wGl1Qvx8/view?usp=sharing" target="_blank" class="btn-dl gdrive">
+                Google Drive
+            </a>
+        </div>
+    </div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="js/firefly.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
+	<script>
+$(document).ready(function() {
+			// --- POP UP 1: INFORMASI SERVER ---
+			$("#btnJoinPopUp").on("click", function(e) {
+				e.preventDefault();
+				$("#modalServer").addClass("tampil");
+			});
+
+			// --- POP UP 2: PILIHAN DOWNLOAD ---
+			$("#btnDownloadPopUp").on("click", function(e) {
+				e.preventDefault();
+				$("#modalDownload").addClass("tampil");
+			});
+
+			$("#btnDownloadPopUp32").on("click", function(e) {
+				e.preventDefault();
+				$("#modalDownload32").addClass("tampil");
+			});
+
+			// --- LOGIK PENUTUP (Berlaku untuk semua Pop-up) ---
+			// Tutup saat tombol 'X' diklik
+			$(".modal-close").on("click", function() {
+				$(this).closest(".modal-overlay").removeClass("tampil");
+			});
+
+			// Tutup saat area luar kotak diklik
+			$(window).on("click", function(e) {
+				if ($(e.target).hasClass("modal-overlay")) {
+					$(e.target).removeClass("tampil");
+				}
+			});
+
+			// --- FITUR SALIN TEKS (Untuk Pop-up Server) ---
+			$(".btn-copy").on("click", function() {
+				let targetId = $(this).attr("data-target");
+				let textToCopy = $("#" + targetId).text();
+				let $button = $(this);
+
+				navigator.clipboard.writeText(textToCopy).then(function() {
+					let originalText = $button.text();
+					$button.text("Tersalin!");
+					$button.css("background-color", "#28a745");
+					
+					setTimeout(function() {
+						$button.text(originalText);
+						$button.css("background-color", "");
+					}, 1500);
+				}).catch(function(err) {
+					console.error('Gagal menyalin: ', err);
+				});
+			});
+		});
+	</script>
 </body>
 </html>
